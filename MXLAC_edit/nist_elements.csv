@@ -1,0 +1,40 @@
+# NIST Standard Reference Database 126 (Hubbell & Seltzer), Table 3, mass attenuation coefficient mu/rho (cm2/g).
+# Only the energies 30-150 keV are kept. None of these elements has an absorption edge between 30 and 150 keV.
+# To add an element: open its page from https://pml.nist.gov/PhysRefData/XrayMassCoef/tab3.html and add rows here
+# (also add its atomic mass to ATOMIC_MASS in mu_calc.py). Do not add Ba, W, Pb, Bi, U... without checking for K-edges in range.
+symbol,Z,energy_keV,mu_rho_cm2_g
+O,8,30,0.3779
+O,8,40,0.2585
+O,8,50,0.2132
+O,8,60,0.1907
+O,8,80,0.1678
+O,8,100,0.1551
+O,8,150,0.1361
+Si,14,30,1.436
+Si,14,40,0.7012
+Si,14,50,0.4385
+Si,14,60,0.3207
+Si,14,80,0.2228
+Si,14,100,0.1835
+Si,14,150,0.1448
+S,16,30,2.113
+S,16,40,0.9872
+S,16,50,0.5849
+S,16,60,0.4053
+S,16,80,0.2585
+S,16,100,0.202
+S,16,150,0.1506
+Fe,26,30,8.176
+Fe,26,40,3.629
+Fe,26,50,1.958
+Fe,26,60,1.205
+Fe,26,80,0.5952
+Fe,26,100,0.3717
+Fe,26,150,0.1964
+Zr,40,30,24.85
+Zr,40,40,11.39
+Zr,40,50,6.173
+Zr,40,60,3.744
+Zr,40,80,1.721
+Zr,40,100,0.9658
+Zr,40,150,0.379

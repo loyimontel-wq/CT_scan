@@ -1,0 +1,55 @@
+{
+  "command_line": "Polychromatic_beam/ct_recon.py --xtekct sim_poly/sim_poly.xtekct --ang sim_poly/sim_poly.ang --proj-dir sim_poly --bin 1 --step 1 --grey-range 0 0.934 --out sim_poly/recon",
+  "script": "ct_recon.py (spatial Ram-Lak filter, centroid COR, real angle weights)",
+  "inputs": {
+    "xtekct": "sim_poly/sim_poly.xtekct",
+    "ang": "sim_poly/sim_poly.ang",
+    "proj_dir": "sim_poly",
+    "n_files": 500,
+    "n_projections_used": 500,
+    "bin": 1,
+    "step": 1
+  },
+  "geometry": {
+    "SrcToObject_mm": 69.1847839355469,
+    "SrcToDetector_mm": 1147.123,
+    "detector_px_after_binning": [
+      192,
+      128
+    ],
+    "detector_pixel_mm_after_binning": [
+      2.1333333333333333,
+      2.1333333333333333
+    ],
+    "voxel_size_mm": 0.12866467303782309
+  },
+  "centre_of_rotation": {
+    "centroid": 3.6820829891419606,
+    "opposing_views": 2.2226181030273438,
+    "method": "centroid of projections",
+    "used_px": 3.6820829891419606
+  },
+  "filter": {
+    "window": "hann",
+    "cutoff": 0.8,
+    "padding": "zero",
+    "kernel": "spatial Ram-Lak"
+  },
+  "angle_sign": 1.0,
+  "z_rows": "all",
+  "grey_mapping": {
+    "lo_1_per_mm": 0.0,
+    "hi_1_per_mm": 0.934,
+    "how_to_read": "mu (1/mm) = lo + grey/65535 * (hi - lo)"
+  },
+  "volume_shape_zyx": [
+    128,
+    192,
+    192
+  ],
+  "backend": "numpy",
+  "seconds": {
+    "reconstruction": 115.0,
+    "total": 115.5
+  }
+}

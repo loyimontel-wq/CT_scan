@@ -1,0 +1,111 @@
+# materials.csv - linear attenuation coefficients used by sim_scan.py
+# Edit freely: add a row to add a rock/mineral. Units: mu_cm1 is cm^-1 (sim_scan converts to mm^-1).
+#
+# source column (keeps provenance clear - choose with  --source  and  --energy):
+#   paper_T2_NIST   Bam, Miller & Becker (2020) Table 2, 'NIST' column. CALCULATED by the authors from the
+#                   NIST element database at 44.79 or 62.53 keV (not measured). Density = the Table 2 density.
+#   paper_T2_MXLAC  Same table, 'MXLAC' column (the authors' tool; differs from NIST by up to ~5 %).
+#   paper_T3_MXLAC  Table 3: MXLAC value at 45.5 keV effective energy (70 kV). Only 13 minerals; these are the
+#                   minerals whose grey values the authors also measured. Densities as printed in Table 3.
+#   calc_eq7        NOT stored here: computed on demand by mu_calc.py (paper Eq. 6-7, NIST element data, log-log
+#                   interpolation). Use  --source calc_eq7 --energy <keV>  . Formula/density come from the rows below.
+#   test_only       My own rough numbers from the earlier sim_scan.py. NOT from the paper. Kept to reproduce old runs.
+#   fixed           Physical constants (air void = 0), valid at any energy.
+# Values are tied to the density in the row; they assume a monochromatic beam at the stated energy.
+# The paper maps 130 kV -> 61.3 keV effective (its Fig. 4); the filter used for that mapping is not stated in the
+# text. A 0.25 mm Cu filter would raise the effective energy by an amount the paper does not give.
+material,formula,density_g_cm3,energy_keV,mu_cm1,source,note
+void,,0,,0,fixed,air-filled pore
+almandine,Fe3Al2Si3O12,4.32,44.79,4.77,paper_T2_NIST,Table 2
+almandine,Fe3Al2Si3O12,4.32,44.79,4.55,paper_T2_MXLAC,Table 2
+almandine,Fe3Al2Si3O12,4.32,62.53,2.21,paper_T2_NIST,Table 2
+almandine,Fe3Al2Si3O12,4.32,62.53,2.19,paper_T2_MXLAC,Table 2
+andradite,Ca3Fe2Si3O12,3.86,44.79,4.09,paper_T2_NIST,Table 2
+andradite,Ca3Fe2Si3O12,3.86,44.79,3.91,paper_T2_MXLAC,Table 2
+andradite,Ca3Fe2Si3O12,3.86,62.53,1.91,paper_T2_NIST,Table 2
+andradite,Ca3Fe2Si3O12,3.86,62.53,1.9,paper_T2_MXLAC,Table 2
+apatite,Ca5(PO4)3OH,3.19,44.79,2.36,paper_T2_NIST,Table 2
+apatite,Ca5(PO4)3OH,3.19,44.79,2.28,paper_T2_MXLAC,Table 2
+apatite,Ca5(PO4)3OH,3.19,62.53,1.19,paper_T2_NIST,Table 2
+apatite,Ca5(PO4)3OH,3.19,62.53,1.19,paper_T2_MXLAC,Table 2
+barite,BaSO4,4.48,44.79,48.67,paper_T2_NIST,Table 2
+barite,BaSO4,4.48,44.79,48.1,paper_T2_MXLAC,Table 2
+barite,BaSO4,4.48,62.53,20.31,paper_T2_NIST,Table 2
+barite,BaSO4,4.48,62.53,21.0,paper_T2_MXLAC,Table 2
+calcite,CaCO3,2.71,44.79,1.8,paper_T2_NIST,Table 2
+calcite,CaCO3,2.71,44.79,1.73,paper_T2_MXLAC,Table 2
+calcite,CaCO3,2.71,62.53,0.94,paper_T2_NIST,Table 2
+calcite,CaCO3,2.71,62.53,0.94,paper_T2_MXLAC,Table 2
+chromite,FeCr2O4,4.79,44.79,7.93,paper_T2_NIST,Table 2
+chromite,FeCr2O4,4.79,44.79,8.03,paper_T2_MXLAC,Table 2
+chromite,FeCr2O4,4.79,62.53,3.42,paper_T2_NIST,Table 2
+chromite,FeCr2O4,4.79,62.53,3.4,paper_T2_MXLAC,Table 2
+corundum,Al2O3,4.02,44.79,1.41,paper_T2_NIST,Table 2
+corundum,Al2O3,4.02,44.79,1.34,paper_T2_MXLAC,Table 2
+corundum,Al2O3,4.02,62.53,0.92,paper_T2_NIST,Table 2
+corundum,Al2O3,4.02,62.53,0.91,paper_T2_MXLAC,Table 2
+dolomite,CaMg(CO3)2,2.85,44.79,1.39,paper_T2_NIST,Table 2
+dolomite,CaMg(CO3)2,2.85,44.79,1.33,paper_T2_MXLAC,Table 2
+dolomite,CaMg(CO3)2,2.85,62.53,0.8,paper_T2_NIST,Table 2
+dolomite,CaMg(CO3)2,2.85,62.53,0.8,paper_T2_MXLAC,Table 2
+fluorite,CaF2,3.13,44.79,2.5,paper_T2_NIST,Table 2
+fluorite,CaF2,3.13,44.79,2.41,paper_T2_MXLAC,Table 2
+fluorite,CaF2,3.13,62.53,1.23,paper_T2_NIST,Table 2
+fluorite,CaF2,3.13,62.53,1.23,paper_T2_MXLAC,Table 2
+goethite,FeO(OH),4.28,44.79,7.34,paper_T2_NIST,Table 2
+goethite,FeO(OH),4.28,44.79,7.01,paper_T2_MXLAC,Table 2
+goethite,FeO(OH),4.28,62.53,3.17,paper_T2_NIST,Table 2
+goethite,FeO(OH),4.28,62.53,3.16,paper_T2_MXLAC,Table 2
+grossular,Ca3Al2Si3O12,3.65,44.79,2.22,paper_T2_NIST,Table 2
+grossular,Ca3Al2Si3O12,3.65,44.79,2.12,paper_T2_MXLAC,Table 2
+grossular,Ca3Al2Si3O12,3.65,62.53,1.19,paper_T2_NIST,Table 2
+grossular,Ca3Al2Si3O12,3.65,62.53,1.18,paper_T2_MXLAC,Table 2
+hematite,Fe2O3,5.26,44.79,9.89,paper_T2_NIST,Table 2
+hematite,Fe2O3,5.26,44.79,9.45,paper_T2_MXLAC,Table 2
+hematite,Fe2O3,5.26,62.53,4.21,paper_T2_NIST,Table 2
+hematite,Fe2O3,5.26,62.53,4.2,paper_T2_MXLAC,Table 2
+kaolinite,Al2Si2O5(OH)4,2.6,44.79,0.91,paper_T2_NIST,Table 2
+kaolinite,Al2Si2O5(OH)4,2.6,44.79,0.87,paper_T2_MXLAC,Table 2
+kaolinite,Al2Si2O5(OH)4,2.6,62.53,0.6,paper_T2_NIST,Table 2
+kaolinite,Al2Si2O5(OH)4,2.6,62.53,0.59,paper_T2_MXLAC,Table 2
+magnetite,Fe3O4,5.18,44.79,10.03,paper_T2_NIST,Table 2
+magnetite,Fe3O4,5.18,44.79,9.58,paper_T2_MXLAC,Table 2
+magnetite,Fe3O4,5.18,62.53,4.25,paper_T2_NIST,Table 2
+magnetite,Fe3O4,5.18,62.53,4.25,paper_T2_MXLAC,Table 2
+pyrite,FeS2,5.01,44.79,8.02,paper_T2_NIST,Table 2
+pyrite,FeS2,5.01,44.79,7.81,paper_T2_MXLAC,Table 2
+pyrite,FeS2,5.01,62.53,3.48,paper_T2_NIST,Table 2
+pyrite,FeS2,5.01,62.53,3.5,paper_T2_MXLAC,Table 2
+pyrope,Mg3Al2Si3O12,3.75,44.79,1.34,paper_T2_NIST,Table 2
+pyrope,Mg3Al2Si3O12,3.75,44.79,1.28,paper_T2_MXLAC,Table 2
+pyrope,Mg3Al2Si3O12,3.75,62.53,0.87,paper_T2_NIST,Table 2
+pyrope,Mg3Al2Si3O12,3.75,62.53,0.86,paper_T2_MXLAC,Table 2
+quartz,SiO2,2.65,44.79,1.01,paper_T2_NIST,Table 2
+quartz,SiO2,2.65,44.79,0.96,paper_T2_MXLAC,Table 2
+quartz,SiO2,2.65,62.53,0.64,paper_T2_NIST,Table 2
+quartz,SiO2,2.65,62.53,0.63,paper_T2_MXLAC,Table 2
+sphalerite,ZnS,4.1,44.79,11.68,paper_T2_NIST,Table 2
+sphalerite,ZnS,4.1,44.79,11.9,paper_T2_MXLAC,Table 2
+sphalerite,ZnS,4.1,62.53,4.78,paper_T2_NIST,Table 2
+sphalerite,ZnS,4.1,62.53,4.8,paper_T2_MXLAC,Table 2
+zircon,ZrSiO4,4.71,44.79,20.06,paper_T2_NIST,Table 2
+zircon,ZrSiO4,4.71,44.79,21.1,paper_T2_MXLAC,Table 2
+zircon,ZrSiO4,4.71,62.53,8.26,paper_T2_NIST,Table 2
+zircon,ZrSiO4,4.71,62.53,8.4,paper_T2_MXLAC,Table 2
+almandine,Fe3Al2Si3O12,4.32,45.5,4.36,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+andradite,Ca3Fe2Si3O12,3.86,45.5,3.74,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+grossular,Ca3Al2Si3O12,3.65,45.5,2.05,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+quartz,SiO2,2.65,45.5,0.93,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+kaolinite,Al2Si2O5(OH)4,2.6,45.5,0.85,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+dolomite,CaMg(CO3)2,2.85,45.5,1.29,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+calcite,CaCO3,2.71,45.5,1.66,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+fluorite,CaF2,3.13,45.5,2.31,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+apatite,Ca5(PO4)3OH,3.15,45.5,2.15,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+goethite,FeO(OH),4.28,45.5,6.7,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+chromite,FeCr2O4,4.79,45.5,7.7,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+magnetite,Fe3O4,5.18,45.5,9.15,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+hematite,Fe2O3,5.26,45.5,9.02,paper_T3_MXLAC,Table 3 (grey values also measured in the paper)
+quartz,SiO2,2.65,,0.45,test_only,"earlier rough value, not from the paper"
+pyrite,FeS2,5.01,,1.3,test_only,"earlier rough value, not from the paper"
+zircon,ZrSiO4,4.71,,2.0,test_only,"earlier rough value, not from the paper"
+magnetite,Fe3O4,5.18,,1.6,test_only,"earlier rough value, not from the paper"

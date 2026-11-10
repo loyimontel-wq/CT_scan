@@ -1,0 +1,125 @@
+{
+  "generated_by": "sim_scan.py (version with materials.csv / truth.json)",
+  "command_line": "Polychromatic_beam/claude.py --spectrum --kv 130 --phantom-file Polychromatic_beam/quartz_hematite.json --nu 247 --nv 256 --nproj 800 --out sim_rod",
+  "geometry": {
+    "SrcToObject_mm": 69.1847839355469,
+    "SrcToDetector_mm": 1147.123,
+    "detector_pixels": [
+      247,
+      256
+    ],
+    "detector_pixel_mm": 1.6582995951417006,
+    "real_detector_pixels": [
+      2048,
+      2048
+    ],
+    "real_detector_pixel_mm": 0.2,
+    "note": "detector is a coarser stand-in for the real one, same field of view",
+    "voxel_size_mm": 0.10001464462859123,
+    "true_cor_px": 3.7,
+    "cor_definition": "rotation axis projects at column (nu-1)/2 + cor_px (same as ct_recon's cor_px)"
+  },
+  "acquisition": {
+    "n_projections": 800,
+    "angles_deg": "-(k*360/N) - 0.01, k = 0..N-1",
+    "white_level": 60000.0,
+    "noise_scale": 0.0,
+    "seed": 12345,
+    "lowest_transmission": 0.09097640295711966
+  },
+  "attenuation": {
+    "energy_keV": 62.53,
+    "source": "paper_T2_NIST",
+    "materials": {
+      "quartz": {
+        "mu_cm1": null,
+        "density": 2.65,
+        "formula": "SiO2",
+        "source": "polychromatic: mu(E) from formula + density + NIST",
+        "energy": null,
+        "mu_mm1": null,
+        "mu_mm1_thin_sample_apparent": 0.07258122408177273
+      },
+      "hematite": {
+        "mu_cm1": null,
+        "density": 5.26,
+        "formula": "Fe2O3",
+        "source": "polychromatic: mu(E) from formula + density + NIST",
+        "energy": null,
+        "mu_mm1": null,
+        "mu_mm1_thin_sample_apparent": 0.5730851032977055
+      }
+    },
+    "caveats": [
+      "single effective energy, no beam hardening, scatter or spectrum",
+      "values tied to the listed densities",
+      "paper Table 2 values are calculated, not measured"
+    ]
+  },
+  "spectrum": {
+    "kv": 130.0,
+    "inherent_al_mm": 7.5,
+    "char_scale": 1.0,
+    "filter_cu_mm": 0.0,
+    "filter_al_mm": 0.0,
+    "energy_bin_keV": 1.0,
+    "count_weighted_mean_keV": 62.23882874809168,
+    "energy_weighted_mean_keV": 69.44131184158262,
+    "paper_effective_keV_for_this_kv_no_added_filter": 61.3,
+    "model": "spectrum.py: Kramers continuum + tungsten K lines, Al/Cu filtration; calibrated to the paper's voltage-to-effective-energy table (fitted, not measured)",
+    "detector": "energy-integrating, weights ~ photon number x energy, no scintillator response"
+  },
+  "phantom": {
+    "host": {
+      "shape": "cylinder",
+      "material": "quartz",
+      "radius_mm": 10.0,
+      "half_height_mm": 10.0
+    },
+    "grains": [
+      {
+        "shape": "cylinder",
+        "material": "hematite",
+        "centre_mm": [
+          0,
+          0,
+          0
+        ],
+        "radius_mm": 2.5,
+        "half_height_mm": 5.0
+      }
+    ]
+  },
+  "self_check": {
+    "rays": 33,
+    "max_abs_dp": 0.001079160544562363,
+    "mean_abs_dp": 0.00026981084559683576,
+    "passed": true
+  },
+  "hand_check": {
+    "pixel_row": 128,
+    "pixel_col": 127,
+    "host_only_p": 2.3927690871676073,
+    "transmission": 0.09137630427272006,
+    "expected_grey_value": 5482.578256363204,
+    "analytic_p_min": 2.3927003258466715,
+    "analytic_p_max": 2.392700325847022
+  },
+  "expected_in_reconstruction": {
+    "note": "POLYCHROMATIC: mu values are the apparent mu of a very thin sample (an upper bound) - beam hardening makes the reconstructed values LOWER, with cupping in the host (centre darker than the rim) and larger drops for thick or dense material. for ct_recon.py run with --bin 1 --step 1 and no --z. Indices are 0-based [z_slice, row, col]; Fiji shows slices 1-based. With --bin b divide positions by b. Values are mu in 1/mm (before the grey-range mapping).",
+    "host_mu_mm1": 0.07258122408177273,
+    "grains": [
+      {
+        "material": "hematite",
+        "mu_mm1": 0.5730851032977055,
+        "index_zyx": [
+          127.5,
+          123.0,
+          123.0
+        ],
+        "radius_voxels": 25.0,
+        "half_height_voxels": 50.0
+      }
+    ]
+  }
+}

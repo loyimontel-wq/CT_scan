@@ -1,0 +1,9 @@
+{
+  "_comment": "Edit and pass with --phantom-file. Units: mm. Materials must exist in materials.csv. Coordinates: x, y horizontal, z up, origin on the rotation axis at mid-height. Grains must lie fully inside the host and not overlap each other. Host shape 'cylinder' needs radius_mm + half_height_mm; 'box' needs half_size_mm [x, y, z].",
+  "host": {"shape": "cylinder", "material": "quartz", "radius_mm": 6.0, "half_height_mm": 5.0},
+  "grains": [
+    {"material": "zircon",    "centre_mm": [-3.0,  0.5,  1.5], "radius_mm": 1.0},
+    {"material": "magnetite", "centre_mm": [ 1.5,  1.5, -2.0], "radius_mm": 0.8},
+    {"material": "void",      "centre_mm": [ 3.5, -2.5,  2.5], "radius_mm": 0.6}
+  ]
+}

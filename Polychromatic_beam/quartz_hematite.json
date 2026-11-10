@@ -1,0 +1,7 @@
+{
+    "host" : {"shape": "cylinder", "material": "quartz",
+              "radius_mm":10.0, "half_height_mm":10.0},
+    "grains": [
+        {"shape":"cylinder","material": "hematite", "centre_mm":[0 , 0 , 0], "radius_mm": 2.5, "half_height_mm":5.0}
+    ]
+}

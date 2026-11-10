@@ -1,0 +1,161 @@
+{
+  "generated_by": "sim_scan.py (version with materials.csv / truth.json)",
+  "command_line": "/home/loyiso/Desktop/CT_scan/MXLAC_edit/sim_scan_v2.0.py",
+  "geometry": {
+    "SrcToObject_mm": 69.1847839355469,
+    "SrcToDetector_mm": 1147.123,
+    "detector_pixels": [
+      192,
+      128
+    ],
+    "detector_pixel_mm": 2.1333333333333333,
+    "real_detector_pixels": [
+      2048,
+      2048
+    ],
+    "real_detector_pixel_mm": 0.2,
+    "note": "detector is a coarser stand-in for the real one, same field of view",
+    "voxel_size_mm": 0.12866467303782309,
+    "true_cor_px": 3.7,
+    "cor_definition": "rotation axis projects at column (nu-1)/2 + cor_px (same as ct_recon's cor_px)"
+  },
+  "acquisition": {
+    "n_projections": 500,
+    "angles_deg": "-(k*360/N) - 0.01, k = 0..N-1",
+    "white_level": 60000.0,
+    "noise_scale": 0.0,
+    "seed": 12345,
+    "lowest_transmission": 0.10115869350625813
+  },
+  "attenuation": {
+    "energy_keV": 62.53,
+    "source": "paper_T2_NIST",
+    "materials": {
+      "quartz": {
+        "mu_cm1": 0.64,
+        "density": 2.65,
+        "formula": "SiO2",
+        "source": "paper_T2_NIST",
+        "energy": 62.53,
+        "mu_mm1": 0.064
+      },
+      "zircon": {
+        "mu_cm1": 8.26,
+        "density": 4.71,
+        "formula": "ZrSiO4",
+        "source": "paper_T2_NIST",
+        "energy": 62.53,
+        "mu_mm1": 0.826
+      },
+      "magnetite": {
+        "mu_cm1": 4.25,
+        "density": 5.18,
+        "formula": "Fe3O4",
+        "source": "paper_T2_NIST",
+        "energy": 62.53,
+        "mu_mm1": 0.425
+      },
+      "void": {
+        "mu_cm1": 0.0,
+        "density": 0.0,
+        "formula": "",
+        "source": "fixed",
+        "energy": null,
+        "mu_mm1": 0.0
+      }
+    },
+    "caveats": [
+      "single effective energy, no beam hardening, scatter or spectrum",
+      "values tied to the listed densities",
+      "paper Table 2 values are calculated, not measured"
+    ]
+  },
+  "phantom": {
+    "host": {
+      "shape": "cylinder",
+      "material": "quartz",
+      "radius_mm": 6.0,
+      "half_height_mm": 5.0
+    },
+    "grains": [
+      {
+        "material": "zircon",
+        "centre_mm": [
+          -3.0,
+          0.5,
+          1.5
+        ],
+        "radius_mm": 1.0
+      },
+      {
+        "material": "magnetite",
+        "centre_mm": [
+          1.5,
+          1.5,
+          -2.0
+        ],
+        "radius_mm": 0.8
+      },
+      {
+        "material": "void",
+        "centre_mm": [
+          3.5,
+          -2.5,
+          2.5
+        ],
+        "radius_mm": 0.6
+      }
+    ]
+  },
+  "self_check": {
+    "rays": 33,
+    "max_abs_dp": 0.0002954814542517892,
+    "mean_abs_dp": 0.00011093405052501523,
+    "passed": true
+  },
+  "hand_check": {
+    "pixel_row": 64,
+    "pixel_col": 99,
+    "host_only_p": 0.768,
+    "transmission": 0.4639400210916467,
+    "expected_grey_value": 27836.401265498804,
+    "analytic_p_min": 0.7679932686935126,
+    "analytic_p_max": 0.7679932686935713
+  },
+  "expected_in_reconstruction": {
+    "note": "for ct_recon.py run with --bin 1 --step 1 and no --z. Indices are 0-based [z_slice, row, col]; Fiji shows slices 1-based. With --bin b divide positions by b. Values are mu in 1/mm (before the grey-range mapping).",
+    "host_mu_mm1": 0.064,
+    "grains": [
+      {
+        "material": "zircon",
+        "mu_mm1": 0.826,
+        "index_zyx": [
+          51.8,
+          99.4,
+          72.2
+        ],
+        "radius_voxels": 7.8
+      },
+      {
+        "material": "magnetite",
+        "mu_mm1": 0.425,
+        "index_zyx": [
+          79.0,
+          107.2,
+          107.2
+        ],
+        "radius_voxels": 6.2
+      },
+      {
+        "material": "void",
+        "mu_mm1": 0.0,
+        "index_zyx": [
+          44.1,
+          76.1,
+          122.7
+        ],
+        "radius_voxels": 4.7
+      }
+    ]
+  }
+}
