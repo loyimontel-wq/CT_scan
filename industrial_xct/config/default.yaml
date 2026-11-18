@@ -1,0 +1,99 @@
+# Default configuration. Every correction is OFF; every geometry value is null = "take from
+# the .xtekct metadata, or report as unavailable". Edit paths first.
+input:
+  metadata_path: null          # e.g. data/scan.xtekct
+  angle_path: null             # e.g. data/_ctdata.txt
+  projection_dir: null         # folder of single-page TIFFs  (use this OR dat_path)
+  dat_path: null
+  dark_path: null              # TIFF file, or folder of TIFFs (averaged)
+  flat_path: null
+  projection_glob: "*.tif*"
+  projection_id_regex: '(\d+)\.tiff?$'   # group 1 = projection identifier in the file name
+  id_offset: 0                 # added to file-name ids before matching; never guessed
+  require_complete_match: true # false only after reviewing unmatched ids
+  expected_dtype: null         # e.g. uint16
+  dat_width: null              # DAT: all of these must be given explicitly
+  dat_height: null
+  dat_n_projections: null
+  dat_dtype: uint16            # uint16 | float32
+  dat_byte_order: little       # little | big
+  dat_header_bytes: 0
+  dat_order: NHW               # NHW (projection-major) | HNW
+  dat_first_projection_id: 1
+
+geometry:
+  sod_mm: null
+  sdd_mm: null
+  detector_pixels_x: null
+  detector_pixels_y: null
+  pixel_size_x_mm: null
+  pixel_size_y_mm: null
+  detector_offset_x_mm: null
+  detector_offset_y_mm: null
+  cor_source: none             # none | manual | metadata | estimate  (exactly one is applied)
+  cor_manual_px: null          # only with cor_source: manual
+  rotation_axis_tilt_deg: null # null = assumed 0 (reported as ASSUMED)
+  detector_roll_deg: null
+  detector_tilt_deg: null
+  voxel_size_mm: null
+  volume_voxels: null          # [nx, ny, nz]
+  acquisition_direction: auto
+  full_scan_tolerance_deg: 1.0
+
+preprocessing:
+  normalisation_mode: dark_flat   # dark_flat | scalar_i0 | none
+  apply_dark: true
+  i0_value: null                  # required for scalar_i0; verify what WhiteLevel means first
+  min_denominator_counts: 1.0
+  transmission_floor: 1.0e-6
+  transmission_ceiling: null
+  bad_pixel_correction: false     # inspect the mask before enabling
+  bad_pixel_gain_ratio_range: [0.5, 1.5]
+  bad_pixel_hot_mad_factor: 8.0
+  bad_pixel_window: 3
+  air_normalisation: false
+  air_region: null                # [x0, x1, y0, y1], end-exclusive, must be verified air
+  air_min_transmission: 0.9
+  air_max_spatial_cv: 0.02
+  batch_size: 32
+  memory_limit_gb: 8.0
+  work_dir: null
+  inspect_sample_projections: 8
+
+reconstruction:                   # used in Pass 2
+  algorithm: FDK_CUDA
+  filter_name: ram-lak
+  filter_cutoff: null             # refused until verified against the installed ASTRA
+  gpu_index: 0
+  gpu_memory_limit_gb: null
+  voxel_size_mm: null
+  volume_voxels: null
+  iterations: 100
+  non_negativity: false
+
+artifacts:                        # used in Pass 2; all disabled
+  cor:
+    enabled: false
+    method: phase_cross_correlation
+    n_pairs: 5
+    pair_angle_tolerance_deg: 0.5
+    upsample_factor: 100
+    n_row_bands: 3
+    consistency_tolerance_px: 0.25
+    sweep_values_px: null
+  ring: {enabled: false, method: wavelet_fft, wavelet: db5, levels: 4, sigma: 2.0}
+  beam_hardening: {enabled: false, coefficients: null, coefficients_are_calibrated: false, label: ""}
+  scatter: {enabled: false, method: none}
+  metal: {enabled: false, threshold: null}
+
+export:
+  output_dir: output
+  basename: reconstruction
+  formats: [tiff32]               # tiff32 | tiff16 | vol
+  tiff16_window_mode: explicit    # explicit | percentile
+  window_min: null
+  window_max: null
+  percentile_low: 0.2
+  percentile_high: 99.8
+
+log_level: INFO

@@ -1,0 +1,8 @@
+# Pass 1
+numpy>=1.26
+scipy>=1.11
+tifffile>=2023.7.10
+PyYAML>=6.0
+# tests
+pytest>=7
+# Pass 2 (not needed yet): astra-toolbox (conda), matplotlib, tqdm, scikit-image, PyWavelets
